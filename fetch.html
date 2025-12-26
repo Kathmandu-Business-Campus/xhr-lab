@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="response"></div>
+    <form action="#" id="form">
+        <input type="text" name="name" id="name">
+        <input type="email" name="email" id="email">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // let form = document.getElementById("form");
+        let form = document.querySelector("#form");
+        let responseDiv = document.querySelector("#response");
+        let email = document.querySelector("#email");
+        let name = document.querySelector("#name");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let data = "email=" + email.value;
+
+            data = data + "name=" + name.value;
+
+            fetch(
+                "/form.php?" + data
+            ).then(async function(response){
+                responseDiv.innerHTML = await response.text();
+            });
+            // response.innerHTML = this.responseText;
+
+        
+        });
+
+    </script>
+</body>
+
+</html>
